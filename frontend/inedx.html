@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bangalore House Price Prediction</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+    <h1>Smart Bangalore Home Price Estimator</h1>
+    <p>AI-powered price prediction using real Bangalore housing data</p>
+</header>
+
+<div class="container">
+
+    <!-- WHY THIS PROJECT -->
+    <div class="cards">
+        <div class="card">
+            <h3>📊 Real Data</h3>
+            <p>Trained on real Bangalore housing market data with proper cleaning and feature engineering.</p>
+        </div>
+        <div class="card">
+            <h3>🧠 Machine Learning</h3>
+            <p>Uses a regression model to estimate house prices based on property characteristics.After observing instability with linear models, I switched to a Random Forest regressor to better capture non-linear relationships in housing data. While predictions are approximate, they are realistic and consistent with market ranges.</p>
+        </div>
+        <div class="card">
+            <h3>⚡ Fast API</h3>
+            <p>Real-time predictions powered by a FastAPI backend.</p>
+        </div>
+    </div>
+
+    <!-- PREDICTION FORM -->
+    <div class="form-box">
+        <h2>Predict House Price</h2>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="location" placeholder="e.g., Whitefield">
+        </div>
+
+        <div class="form-group">
+            <label>Total Square Feet</label>
+            <input type="number" id="sqft" placeholder="e.g., 1200">
+        </div>
+
+        <div class="form-group">
+            <label>BHK</label>
+            <input type="number" id="bhk" placeholder="e.g., 2">
+        </div>
+
+        <div class="form-group">
+            <label>Bathrooms</label>
+            <input type="number" id="bath" placeholder="e.g., 2">
+        </div>
+
+        <button onclick="predictPrice()">Predict Price</button>
+
+        <div class="result" id="resultBox">
+            <h3>💰 Estimated Price</h3>
+            <p id="priceText"></p>
+            <p><strong>Note:</strong> This is an AI-based estimate for learning purposes.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Built with ❤️ using Machine Learning & FastAPI
+</footer>
+
+<script>
+    function predictPrice() {
+        const location = document.getElementById("location").value;
+        const sqft = document.getElementById("sqft").value;
+        const bhk = document.getElementById("bhk").value;
+        const bath = document.getElementById("bath").value;
+
+        fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                location: location,
+                sqft: parseFloat(sqft),
+                bhk: parseInt(bhk),
+                bath: parseInt(bath)
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("resultBox").style.display = "block";
+            document.getElementById("priceText").innerText =
+                `₹ ${data.predicted_price_lakhs} Lakhs (approx)`;
+        })
+        .catch(error => {
+            alert("Error connecting to prediction API");
+            console.error(error);
+        });
+    }
+</script>
+<script src="script.js"></script>
+
+
+</body>
+</html>

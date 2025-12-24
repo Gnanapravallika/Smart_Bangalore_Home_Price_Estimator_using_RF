@@ -1,6 +1,6 @@
 # Smart_Bangalore_Home_Price_Estimator_using_RF
 
-Project Overview
+## Project Overview
 
 This project is an end-to-end machine learning application that predicts house prices in Bangalore based on property features such as location, total square feet, number of bedrooms (BHK), and bathrooms.
 
@@ -16,7 +16,7 @@ Frontend integration
 
 End-to-end testing
 
-🎯 Problem Statement
+## Problem Statement
 
 Real estate pricing depends on multiple interacting factors such as location, size, and amenities.
 This project aims to build a machine learning system that can estimate house prices using historical Bangalore housing data and expose the model via a REST API for real-time predictions.
@@ -105,8 +105,8 @@ JavaScript (Fetch API)
 
 ## How to Run the Project Locally
 ## 1.Clone the Repository
-git clone https://github.com/your-username/bangalore-house-price-prediction.git
-cd bangalore-house-price-prediction
+git clone https://github.com/your-username/Smart_Bangalore_Home_Price_Estimator_using_RF.git
+cd Smart_Bangalore_Home_Price_Estimator_using_RF
 
 ## 2. Create & Activate Virtual Environment
 python -m venv venv
@@ -132,7 +132,7 @@ Open in browser:
 
 http://127.0.0.1:5500
 
-##Example API Input
+## Example API Input
 {
   "location": "Whitefield",
   "sqft": 1200,
